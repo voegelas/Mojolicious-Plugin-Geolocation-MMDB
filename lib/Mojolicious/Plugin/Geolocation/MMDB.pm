@@ -24,7 +24,7 @@ sub register {
 
     my $data;
     if ($ip_address) {
-      $data = eval { $mmdb->record_for_address($ip_address) };
+      $data = $mmdb->record_for_address($ip_address);
     }
 
     return $data;

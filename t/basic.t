@@ -35,8 +35,4 @@ $t->get_ok('/176.9.54.163')
   ->json_is('/city/names/lv'    => 'Falkenšteina')
   ->json_is('/country/names/lv' => 'Vācija');
 
-$t->get_ok('/noipaddress')
-  ->status_is(200)
-  ->json_is(undef);
-
 done_testing;
