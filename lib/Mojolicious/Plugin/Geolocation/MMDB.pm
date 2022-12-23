@@ -9,28 +9,30 @@ use Carp qw(croak);
 use IP::Geolocation::MMDB;
 
 sub register {
-  my ($self, $app, $conf) = @_;
+    my ($self, $app, $conf) = @_;
 
-  my $file = $conf->{file} or croak q{The "file" parameter is mandatory};
+    my $file = $conf->{file} or croak q{The "file" parameter is mandatory};
 
-  my $mmdb = IP::Geolocation::MMDB->new(file => $file);
+    my $mmdb = IP::Geolocation::MMDB->new(file => $file);
 
-  $app->helper(geolocation => sub {
-    my ($c, $ip_address) = @_;
+    $app->helper(
+        geolocation => sub {
+            my ($c, $ip_address) = @_;
 
-    if (!defined $ip_address) {
-      $ip_address = $c->tx->remote_address;
-    }
+            if (!defined $ip_address) {
+                $ip_address = $c->tx->remote_address;
+            }
 
-    my $data;
-    if ($ip_address) {
-      $data = $mmdb->record_for_address($ip_address);
-    }
+            my $data;
+            if ($ip_address) {
+                $data = $mmdb->record_for_address($ip_address);
+            }
 
-    return $data;
-  });
+            return $data;
+        }
+    );
 
-  return;
+    return;
 }
 
 1;
