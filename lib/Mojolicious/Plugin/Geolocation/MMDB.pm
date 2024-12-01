@@ -52,7 +52,7 @@ version 1.000
 
   use Mojolicious::Lite -signatures;
 
-  plugin 'Geolocation::MMDB', {file => 'Country.mmdb'};
+  plugin 'Geolocation::MMDB', {file => '/path/to/Country.mmdb'};
 
   get '/' => sub ($c) {
     my $location = $c->geolocation;
@@ -84,7 +84,7 @@ address.  Dies if the address is not a valid IP address.
 
 =head2 register
 
-  $plugin->register(Mojolicious->new, {file => 'City.mmdb'});
+  $plugin->register(Mojolicious->new, {file => '/path/to/City.mmdb'});
 
 Registers the plugin in a Mojolicious application.  The "file" parameter is
 required.

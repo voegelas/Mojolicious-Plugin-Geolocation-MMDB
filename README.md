@@ -5,7 +5,7 @@ location information such as country and city names.
 
     use Mojolicious::Lite -signatures;
 
-    plugin 'Geolocation::MMDB', {file => 'Country.mmdb'};
+    plugin 'Geolocation::MMDB', {file => '/path/to/Country.mmdb'};
 
     get '/' => sub ($c) {
       my $location = $c->geolocation;
